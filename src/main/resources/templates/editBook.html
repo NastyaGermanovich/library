@@ -1,0 +1,111 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>EditBook</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous"></link>
+    <link type="text/css" rel="stylesheet" href="../style.css" />
+
+    <style>
+        .pagination-centered {
+            text-align: center;
+        }
+
+        .disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+
+        .pointer-disabled {
+            pointer-events: none;
+        }
+    </style>
+
+</head>
+<body>
+<form method="post" action="/save">
+
+<table class="container">
+            <thead>
+            <tr>
+                <th style="text-align: center" width="2%">ID</th>
+                <th style="text-align: center" width="15%">TITLE</th>
+                <th style="text-align: center" width="42%">DESCRIPTION</th>
+                <th style="text-align: center" width="10%">AUTHOR</th>
+                <th style="text-align: center" width="12%">ISBN</th>
+                <th style="text-align: center" width="5%">PRINT YEAR</th>
+                <th style="text-align: center" width="7%">READ ALREADY</th>
+                <th style="text-align: center" width="7%">ACTIONS</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+
+                <td>
+                    <input type="text" name="id" th:value="${booklist.id}" disabled/>
+                    <input type="hidden" name="id" th:value="${booklist.id}"/>
+                </td>
+                <td>
+                    <input type="text" name="title" th:value="${booklist.title}"/>
+                </td>
+                <td>
+                    <input type="text" name="description" th:value="${booklist.description}"/>
+                </td>
+                <td>
+                    <input type="text" name="author" th:value="${booklist.author}" disabled/>
+                    <input type="hidden" name="author" th:value="${booklist.author}" />
+                </td>
+                <td>
+                    <input type="text" name="isbn" th:value="${booklist.isbn}"/>
+                </td>
+                <td>
+                    <input type="text" name="printyear" th:value="${booklist.printyear}"/>
+                </td>
+                <td>
+                    <input type="text" name="readalready" value="false" disabled>
+                    <input type="hidden" name="readalready" value="false">
+                </td>
+                <td>
+                    <input type="submit" value="Replace">
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="8" onClick='location.href="/"'>
+                    <p>Return back to BookShelf</p>
+                </td>
+            </tr>
+            </tr>
+            </tbody>
+        </table>
+</form>
+
+<script
+        src="https://code.jquery.com/jquery-1.11.1.min.js"
+        integrity="sha256-VAvG3sHdS5LqTT+5A/aeq/bZGa/Uj04xKxY8KM/w9EE="
+        crossorigin="anonymous"></script>
+
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function() {
+        changePageAndSize();
+    });
+
+    function changePageAndSize() {
+        $('#pageSizeSelect').change(function(evt) {
+            window.location.replace("/?pageSize=" + this.value + "&page=1");
+        });
+    }
+    /*]]>*/
+</script>
+
+</body>
+</html>
